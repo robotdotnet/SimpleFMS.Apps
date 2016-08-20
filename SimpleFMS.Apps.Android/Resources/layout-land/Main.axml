@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:minWidth="25px"
+        android:minHeight="25px">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/matchButtonHolderLayout">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="204dp"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:visibility="gone"
+                android:id="@+id/matchRunningLayout">
+                <Button
+                    android:text="Stop Period"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:background="@android:color/darker_gray"
+                    android:layout_height="100dp"
+                    android:minLines="2"
+                    android:id="@+id/stopPeriodButton" />
+                <Button
+                    android:text="EStop All Robots"
+                    android:layout_gravity="center"
+                    android:background="@android:color/holo_red_dark"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:minLines="2"
+                    android:id="@+id/eStopButton" />
+                <TextView
+                    android:text="Time Remaining"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="2"
+                    android:id="@+id/matchState"
+                    android:layout_gravity="center"
+                    android:gravity="center" />
+                <TextView
+                    android:text="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/remainingTextView"
+                    android:gravity="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:visibility="gone"
+                android:id="@+id/matchStoppedLayout">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/autoLinearLayout1">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/autoLinearLayout2">
+                        <TextView
+                            android:text="Auto Time"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_width="104dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/autoTimeText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/autoTimeView" />
+                    </LinearLayout>
+                    <Button
+                        android:text="Start Auto"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/startAutonomousButton" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teleopLinearLayout1">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/teleopLinearLayout2">
+                        <TextView
+                            android:text="Teleop Time"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_width="104dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/teleopTimeText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/teleopTimeView" />
+                    </LinearLayout>
+                    <Button
+                        android:text="Start Teleop"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/startTeleoperatedButton" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/matchLinearLayout21">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/matchLinearLayout2">
+                        <TextView
+                            android:text="Delay Time"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_width="104dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/matchTimeText" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/delayTimeView" />
+                    </LinearLayout>
+                    <Button
+                        android:text="Start Match"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/matchStartButton" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/matchButtonHolderLayout"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/teamInfoLayout">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:paddingTop="5dp"
+                android:layout_height="50dp">
+                <TextView
+                    android:text="Team Number"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/teamNumberLabelView"
+                    android:gravity="center" />
+                <TextView
+                    android:text="Bypass"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/teamNumberLabelView"
+                    android:id="@+id/bypassLabelView"
+                    android:gravity="center"
+                    android:minLines="2" />
+                <TextView
+                    android:text="Batt"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/battLabelView"
+                    android:gravity="center"
+                    android:minLines="2" />
+                <TableLayout
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/bypassLabelView"
+                    android:layout_toLeftOf="@id/battLabelView"
+                    android:shrinkColumns="1"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:gravity="center"
+                        android:layout_height="fill_parent">
+                        <TextView
+                            android:text="DS"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_column="0"
+                            android:layout_width="0dip"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:id="@+id/dsViewStation1"
+                            android:gravity="center"
+                            android:minLines="2" />
+                        <TextView
+                            android:text="Rio"
+                            android:layout_column="1"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:layout_height="fill_parent"
+                            android:id="@+id/rioViewStation1"
+                            android:gravity="center" />
+                        <TextView
+                            android:text="EStop"
+                            android:layout_column="2"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:layout_height="fill_parent"
+                            android:id="@+id/eStopViewStation1"
+                            android:gravity="center" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+                <EditText
+                    android:text="0"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/teamNumberStation1"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:minLines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:lines="1"
+                    android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_toRightOf="@+id/teamNumberStation1"
+                    android:id="@+id/cbLayoutStation1"
+                    android:gravity="center">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bypassCheckStation1"
+                        android:checked="true" />
+                </LinearLayout>
+                <TextView
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/batteryStation1"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:lines="1"
+                    android:inputType="number" />
+                <TableLayout
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/cbLayoutStation1"
+                    android:layout_toLeftOf="@id/batteryStation1"
+                    android:shrinkColumns="1"
+                    android:stretchColumns="*"
+                    android:id="@+id/relativeLayout2">
+                    <TableRow>
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="0"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/dsCommStation1" />
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="1"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/rioCommStation1" />
+                        <View
+                            android:background="@android:color/holo_blue_bright"
+                            android:layout_column="2"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/eStopStation1" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingBottom="5dp">
+                <EditText
+                    android:text="1"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/teamNumberStation2"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:minLines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:lines="1"
+                    android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_toRightOf="@+id/teamNumberStation2"
+                    android:id="@+id/cbLayoutStation2"
+                    android:gravity="center">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bypassCheckStation2"
+                        android:checked="true" />
+                </LinearLayout>
+                <TextView
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/batteryStation2"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:lines="1"
+                    android:inputType="number" />
+                <TableLayout
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/cbLayoutStation2"
+                    android:layout_toLeftOf="@id/batteryStation2"
+                    android:shrinkColumns="1"
+                    android:stretchColumns="*"
+                    android:id="@+id/relativeLayout2">
+                    <TableRow>
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="0"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/dsCommStation2" />
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="1"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/rioCommStation2" />
+                        <View
+                            android:background="@android:color/holo_blue_bright"
+                            android:layout_column="2"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/eStopStation2" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingBottom="5dp">
+                <EditText
+                    android:text="2"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/teamNumberStation3"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:minLines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:lines="1"
+                    android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_toRightOf="@+id/teamNumberStation3"
+                    android:id="@+id/cbLayoutStation3"
+                    android:gravity="center">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bypassCheckStation3"
+                        android:checked="true" />
+                </LinearLayout>
+                <TextView
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/batteryStation3"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:lines="1"
+                    android:inputType="number" />
+                <TableLayout
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/cbLayoutStation3"
+                    android:layout_toLeftOf="@id/batteryStation3"
+                    android:shrinkColumns="1"
+                    android:stretchColumns="*"
+                    android:id="@+id/relativeLayout2">
+                    <TableRow>
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="0"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/dsCommStation3" />
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="1"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/rioCommStation3" />
+                        <View
+                            android:background="@android:color/holo_blue_bright"
+                            android:layout_column="2"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/eStopStation3" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingBottom="5dp">
+                <EditText
+                    android:text="3"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/teamNumberStation4"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:minLines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:lines="1"
+                    android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_toRightOf="@+id/teamNumberStation4"
+                    android:id="@+id/cbLayoutStation4"
+                    android:gravity="center">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bypassCheckStation4"
+                        android:checked="true" />
+                </LinearLayout>
+                <TextView
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/batteryStation4"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:lines="1"
+                    android:inputType="number" />
+                <TableLayout
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/cbLayoutStation4"
+                    android:layout_toLeftOf="@id/batteryStation4"
+                    android:shrinkColumns="1"
+                    android:stretchColumns="*"
+                    android:id="@+id/relativeLayout2">
+                    <TableRow>
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="0"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/dsCommStation4" />
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="1"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/rioCommStation4" />
+                        <View
+                            android:background="@android:color/holo_blue_bright"
+                            android:layout_column="2"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/eStopStation4" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingBottom="5dp">
+                <EditText
+                    android:text="4"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/teamNumberStation5"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:minLines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:lines="1"
+                    android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_toRightOf="@+id/teamNumberStation5"
+                    android:id="@+id/cbLayoutStation5"
+                    android:gravity="center">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bypassCheckStation5"
+                        android:checked="true" />
+                </LinearLayout>
+                <TextView
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/batteryStation5"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:lines="1"
+                    android:inputType="number" />
+                <TableLayout
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/cbLayoutStation5"
+                    android:layout_toLeftOf="@id/batteryStation5"
+                    android:shrinkColumns="1"
+                    android:stretchColumns="*"
+                    android:id="@+id/relativeLayout2">
+                    <TableRow>
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="0"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/dsCommStation5" />
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="1"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/rioCommStation5" />
+                        <View
+                            android:background="@android:color/holo_blue_bright"
+                            android:layout_column="2"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/eStopStation5" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingBottom="5dp">
+                <EditText
+                    android:text="5"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/teamNumberStation6"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:minLines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:lines="1"
+                    android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_toRightOf="@+id/teamNumberStation6"
+                    android:id="@+id/cbLayoutStation6"
+                    android:gravity="center">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bypassCheckStation6"
+                        android:checked="true" />
+                </LinearLayout>
+                <TextView
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/batteryStation6"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:lines="1"
+                    android:inputType="number" />
+                <TableLayout
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@id/cbLayoutStation6"
+                    android:layout_toLeftOf="@id/batteryStation6"
+                    android:shrinkColumns="1"
+                    android:stretchColumns="*"
+                    android:id="@+id/relativeLayout2">
+                    <TableRow>
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="0"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/dsCommStation6" />
+                        <View
+                            android:background="@android:color/holo_red_light"
+                            android:layout_column="1"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/rioCommStation6" />
+                        <View
+                            android:background="@android:color/holo_blue_bright"
+                            android:layout_column="2"
+                            android:layout_width="0dip"
+                            android:layout_weight="1"
+                            android:id="@+id/eStopStation6" />
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="45.0dp"
+                android:id="@+id/linearLayout2">
+                <TextView
+                    android:text="Match Number"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="66.5dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView6"
+                    android:gravity="center" />
+                <EditText
+                    android:layout_width="103.0dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:id="@+id/matchNumberText"
+                    android:gravity="center"
+                    android:text="1" />
+                <Button
+                    android:text="Initialize Match"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/initializeMatchButton" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

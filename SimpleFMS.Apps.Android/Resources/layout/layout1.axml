@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:id="@+id/matchButtonHolderLayout">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:visibility="gone"
+        android:id="@+id/matchRunningLayout">
+        <Button
+            android:text="Stop Period"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:background="@android:color/darker_gray"
+            android:layout_height="100dp"
+            android:minLines="2"
+            android:id="@+id/stopPeriodButton" />
+        <Button
+            android:text="EStop All Robots"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:minLines="2"
+            android:id="@+id/eStopButton" />
+        <TextView
+            android:text="Time Remaining"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:id="@+id/matchState"
+            android:layout_gravity="center"
+            android:gravity="center" />
+        <TextView
+            android:text="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/remainingTextView"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:visibility="gone"
+        android:id="@+id/matchStoppedLayout">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/autoLinearLayout1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/autoLinearLayout2">
+                <TextView
+                    android:text="Auto Time"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/autoTimeText" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/autoTimeView" />
+            </LinearLayout>
+            <Button
+                android:text="Start Auto"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/startAutonomousButton" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teleopLinearLayout1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/teleopLinearLayout2">
+                <TextView
+                    android:text="Teleop Time"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teleopTimeView" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teleopTimeEditText" />
+            </LinearLayout>
+            <Button
+                android:text="Start Teleop"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/startTeleoperatedButton" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/matchLinearLayout21">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/matchLinearLayout2">
+                <TextView
+                    android:text="Delay Time"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/matchTimeText" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/delayTimeView" />
+            </LinearLayout>
+            <Button
+                android:text="Start Match"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/matchStartButton" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

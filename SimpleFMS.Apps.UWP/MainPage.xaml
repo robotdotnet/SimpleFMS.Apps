@@ -1,0 +1,284 @@
+﻿<Page
+    x:Class="SimpleFMS.Apps.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleFMS.Apps.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+    <ScrollViewer>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainTeamStack.(RelativePanel.LeftOf)" Value="MatchTypePanel"></Setter>
+                        <Setter Target="MatchRunningGrid.RowDefinitions[0].Height" Value="Auto"></Setter>
+                        <Setter Target="MatchRunningGrid.RowDefinitions[1].Height" Value="Auto"></Setter>
+                        <Setter Target="MatchRunningGrid.RowDefinitions[2].Height" Value="Auto"></Setter>
+                        <Setter Target="MatchRunningGrid.ColumnDefinitions[0].Width" Value="*"></Setter>
+                        <Setter Target="MatchRunningGrid.ColumnDefinitions[1].Width" Value="0"></Setter>
+                        <Setter Target="MatchRunningGrid.ColumnDefinitions[2].Width" Value="0"></Setter>
+                        <Setter Target="StopMatchButton.(Grid.Row)" Value="0"></Setter>
+                        <Setter Target="EStopRobots.(Grid.Row)" Value="1"></Setter>
+                        <Setter Target="MatchRunningStackPanel.(Grid.Row)" Value="2"></Setter>
+
+                        <Setter Target="StopMatchButton.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="EStopRobots.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="MatchRunningStackPanel.(Grid.Column)" Value="0"></Setter>
+
+
+                        <Setter Target="MatchStoppedGrid.RowDefinitions[0].Height" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.RowDefinitions[1].Height" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.RowDefinitions[2].Height" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.ColumnDefinitions[0].Width" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.ColumnDefinitions[1].Width" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.ColumnDefinitions[2].Width" Value="0"></Setter>
+
+
+
+                        <Setter Target="MatchStoppedAutoStackPanel.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="MatchStoppedAutoStackPanel.(Grid.Row)" Value="0"></Setter>
+
+                        <Setter Target="MatchStoppedTeleopStackPanel.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="MatchStoppedTeleopStackPanel.(Grid.Row)" Value="1"></Setter>
+
+                        <Setter Target="MatchStoppedDelayStackPanel.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="MatchStoppedDelayStackPanel.(Grid.Row)" Value="2"></Setter>
+
+                        <Setter Target="StartAutonomousButton.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="StartAutonomousButton.(Grid.Row)" Value="0"></Setter>
+
+                        <Setter Target="StartTeleoperatedButton.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="StartTeleoperatedButton.(Grid.Row)" Value="1"></Setter>
+
+                        <Setter Target="StartMatchButton.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="StartMatchButton.(Grid.Row)" Value="2"></Setter>
+                        
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainTeamStack.(RelativePanel.AlignRightWithPanel)" Value="True"></Setter>
+                        <Setter Target="MainTeamStack.(RelativePanel.Below)" Value="MatchTypePanel"></Setter>
+                        <Setter Target="MatchTypePanel.(RelativePanel.AlignLeftWithPanel)" Value="true"></Setter>
+                        <Setter Target="MatchRunningGrid.RowDefinitions[0].Height" Value="*"></Setter>
+                        <Setter Target="MatchRunningGrid.RowDefinitions[1].Height" Value="0"></Setter>
+                        <Setter Target="MatchRunningGrid.RowDefinitions[2].Height" Value="0"></Setter>
+                        <Setter Target="MatchRunningGrid.ColumnDefinitions[0].Width" Value="*"></Setter>
+                        <Setter Target="MatchRunningGrid.ColumnDefinitions[1].Width" Value="*"></Setter>
+                        <Setter Target="MatchRunningGrid.ColumnDefinitions[2].Width" Value="*"></Setter>
+                        <Setter Target="StopMatchButton.(Grid.Row)" Value="0"></Setter>
+                        <Setter Target="EStopRobots.(Grid.Row)" Value="0"></Setter>
+                        <Setter Target="MatchRunningStackPanel.(Grid.Row)" Value="0"></Setter>
+
+                        <Setter Target="StopMatchButton.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="EStopRobots.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="MatchRunningStackPanel.(Grid.Column)" Value="2"></Setter>
+
+
+                        <Setter Target="MatchStoppedGrid.RowDefinitions[0].Height" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.RowDefinitions[1].Height" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.RowDefinitions[2].Height" Value="0"></Setter>
+                        <Setter Target="MatchStoppedGrid.ColumnDefinitions[0].Width" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.ColumnDefinitions[1].Width" Value="*"></Setter>
+                        <Setter Target="MatchStoppedGrid.ColumnDefinitions[2].Width" Value="*"></Setter>
+
+                        <Setter Target="MatchStoppedAutoStackPanel.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="MatchStoppedAutoStackPanel.(Grid.Row)" Value="0"></Setter>
+
+                        <Setter Target="MatchStoppedTeleopStackPanel.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="MatchStoppedTeleopStackPanel.(Grid.Row)" Value="0"></Setter>
+
+                        <Setter Target="MatchStoppedDelayStackPanel.(Grid.Column)" Value="2"></Setter>
+                        <Setter Target="MatchStoppedDelayStackPanel.(Grid.Row)" Value="0"></Setter>
+
+                        <Setter Target="StartAutonomousButton.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="StartAutonomousButton.(Grid.Row)" Value="1"></Setter>
+
+                        <Setter Target="StartTeleoperatedButton.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="StartTeleoperatedButton.(Grid.Row)" Value="1"></Setter>
+
+                        <Setter Target="StartMatchButton.(Grid.Column)" Value="2"></Setter>
+                        <Setter Target="StartMatchButton.(Grid.Row)" Value="1"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <RelativePanel HorizontalAlignment="Stretch" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <RelativePanel x:Name="MatchTypePanel" RelativePanel.AlignRightWithPanel="True" Margin="10" >
+                <Grid x:Name="MatchStoppedGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RelativePanel.AlignTopWithPanel="True" 
+                      RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Visibility="Collapsed" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel x:Name="MatchStoppedAutoStackPanel" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0">
+                        <TextBlock Text="Autonomous Time" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+                        <TextBox x:Name="AutonomousTimeTextBox" Text="1" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBox>
+                    </StackPanel>
+                    <StackPanel x:Name="MatchStoppedTeleopStackPanel" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0">
+                        <TextBlock Text="Teleoperated Time" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+                        <TextBox x:Name="TeleopTimeTextBox" Text="1" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBox>
+                    </StackPanel>
+                    <StackPanel x:Name="MatchStoppedDelayStackPanel" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="0">
+                        <TextBlock Text="Delay Time" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+                        <TextBox x:Name="DelayTimeTextBox" Text="1" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBox>
+                    </StackPanel>
+                    <Button x:Name="StartAutonomousButton" Content="Start Auto" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="0"  Grid.Row="1" Margin="5" />
+                    <Button x:Name="StartTeleoperatedButton" Content="Start Teleop" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="1"  Grid.Row="1" Margin="5" />
+                    <Button x:Name="StartMatchButton" Content="Start Match" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="2"  Grid.Row="1" Margin="5" />
+                </Grid>
+                
+                <Grid x:Name="MatchRunningGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RelativePanel.AlignTopWithPanel="True" 
+                      RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Visibility="Collapsed"  >
+                   <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="StopMatchButton" Content="Stop Match" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="0" Margin="5" />
+                    <Button x:Name="EStopRobots" Content="EStop All Robots" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="1" Margin="5" Background="Red" />
+                    <StackPanel x:Name="MatchRunningStackPanel" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="2">
+                        <TextBlock x:Name="MatchRunningStateLabel" Text="Time Remaining" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+                        <TextBlock x:Name="MatchTimeRemainingLabel" Text="1" HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </RelativePanel>
+            
+            <StackPanel x:Name="MainTeamStack"
+            Orientation="Vertical" RelativePanel.AlignLeftWithPanel="True" >
+                <RelativePanel HorizontalAlignment="Stretch" Height="40" Margin="10,0,10,0" VerticalAlignment="Top">
+                    <TextBlock x:Name="TeamNumberLabel" Width="71" Text="Team Number" TextWrapping="Wrap" TextAlignment="Center" Height="40"></TextBlock>
+                    <TextBlock x:Name="BypassLabel" Width="32" Margin="0,13,10,0" Text="Bypass" TextAlignment="Center" RelativePanel.RightOf="TeamNumberLabel" FontSize="9"></TextBlock>
+                    <TextBlock x:Name="BatteryLabel" Width="70" TextAlignment="Center" Text="Battery" RelativePanel.AlignRightWithPanel="True" Margin="10,10,10,0"></TextBlock>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="50" RelativePanel.LeftOf="BatteryLabel" RelativePanel.RightOf="BypassLabel"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="DS Comm" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" />
+                        <TextBlock Text="Rio Comm" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" />
+                        <TextBlock Text="eStop" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="2" />
+                    </Grid>
+                </RelativePanel>
+                <RelativePanel HorizontalAlignment="Stretch" Height="32" Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.415,0.485">
+                    <TextBox x:Name="teamNumberStation1" HorizontalAlignment="Left" Height="32" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="71" TextAlignment="Center" InputScope="Number"/>
+                    <CheckBox x:Name="bypassStation1" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" RelativePanel.RightOf="teamNumberStation1" Padding="0" MinWidth="0" Margin="10,0,10,0" IsChecked="True"/>
+                    <TextBlock x:Name="battStation1" HorizontalAlignment="Center" Height="20" TextWrapping="Wrap" Text="12" VerticalAlignment="Center" Width="70" RelativePanel.AlignRightWithPanel="True" Margin="10,6,10,6" TextAlignment="Center"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="32" RelativePanel.LeftOf="battStation1" RelativePanel.RightOf="bypassStation1"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="DsConnStation1" Fill="#FF1414A4" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="0" />
+                        <Rectangle x:Name="RioConnStation1" Fill="#FFA44F14" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="1" />
+                        <Rectangle x:Name="eStopStation1" Fill="#FF35A414" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="2" />
+                    </Grid>
+                </RelativePanel>
+                <RelativePanel HorizontalAlignment="Stretch" Height="32" Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.415,0.485">
+                    <TextBox x:Name="teamNumberStation2" HorizontalAlignment="Left" Height="32" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="71" TextAlignment="Center" InputScope="Number"/>
+                    <CheckBox x:Name="bypassStation2" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" RelativePanel.RightOf="teamNumberStation2" Padding="0" MinWidth="0" Margin="10,0,10,0" IsChecked="True"/>
+                    <TextBlock x:Name="battStation2" HorizontalAlignment="Center" Height="20" TextWrapping="Wrap" Text="12" VerticalAlignment="Center" Width="70" RelativePanel.AlignRightWithPanel="True" Margin="10,6,10,6" TextAlignment="Center"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="32" RelativePanel.LeftOf="battStation2" RelativePanel.RightOf="bypassStation2"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="DsConnStation2" Fill="#FF1414A4" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="0" />
+                        <Rectangle x:Name="RioConnStation2" Fill="#FFA44F14" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="1" />
+                        <Rectangle x:Name="eStopStation2" Fill="#FF35A414" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="2" />
+                    </Grid>
+                </RelativePanel>
+                <RelativePanel HorizontalAlignment="Stretch" Height="32" Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.415,0.485">
+                    <TextBox x:Name="teamNumberStation3" HorizontalAlignment="Left" Height="32" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="71" TextAlignment="Center" InputScope="Number"/>
+                    <CheckBox x:Name="bypassStation3" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" RelativePanel.RightOf="teamNumberStation3" Padding="0" MinWidth="0" Margin="10,0,10,0" IsChecked="True"/>
+                    <TextBlock x:Name="battStation3" HorizontalAlignment="Center" Height="20" TextWrapping="Wrap" Text="12" VerticalAlignment="Center" Width="70" RelativePanel.AlignRightWithPanel="True" Margin="10,6,10,6" TextAlignment="Center"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="32" RelativePanel.LeftOf="battStation3" RelativePanel.RightOf="bypassStation3"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="DsConnStation3" Fill="#FF1414A4" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="0" />
+                        <Rectangle x:Name="RioConnStation3" Fill="#FFA44F14" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="1" />
+                        <Rectangle x:Name="eStopStation3" Fill="#FF35A414" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="2" />
+                    </Grid>
+                </RelativePanel>
+                <RelativePanel HorizontalAlignment="Stretch" Height="32" Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.415,0.485">
+                    <TextBox x:Name="teamNumberStation4" HorizontalAlignment="Left" Height="32" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="71" TextAlignment="Center" InputScope="Number"/>
+                    <CheckBox x:Name="bypassStation4" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" RelativePanel.RightOf="teamNumberStation4" Padding="0" MinWidth="0" Margin="10,0,10,0" IsChecked="True"/>
+                    <TextBlock x:Name="battStation4" HorizontalAlignment="Center" Height="20" TextWrapping="Wrap" Text="12" VerticalAlignment="Center" Width="70" RelativePanel.AlignRightWithPanel="True" Margin="10,6,10,6" TextAlignment="Center"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="32" RelativePanel.LeftOf="battStation4" RelativePanel.RightOf="bypassStation4"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="DsConnStation4" Fill="#FF1414A4" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="0" />
+                        <Rectangle x:Name="RioConnStation4" Fill="#FFA44F14" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="1" />
+                        <Rectangle x:Name="eStopStation4" Fill="#FF35A414" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="2" />
+                    </Grid>
+                </RelativePanel>
+                <RelativePanel HorizontalAlignment="Stretch" Height="32" Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.415,0.485">
+                    <TextBox x:Name="teamNumberStation5" HorizontalAlignment="Left" Height="32" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="71" TextAlignment="Center" InputScope="Number"/>
+                    <CheckBox x:Name="bypassStation5" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" RelativePanel.RightOf="teamNumberStation5" Padding="0" MinWidth="0" Margin="10,0,10,0" IsChecked="True"/>
+                    <TextBlock x:Name="battStation5" HorizontalAlignment="Center" Height="20" TextWrapping="Wrap" Text="12" VerticalAlignment="Center" Width="70" RelativePanel.AlignRightWithPanel="True" Margin="10,6,10,6" TextAlignment="Center"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="32" RelativePanel.LeftOf="battStation5" RelativePanel.RightOf="bypassStation5"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="DsConnStation5" Fill="#FF1414A4" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="0" />
+                        <Rectangle x:Name="RioConnStation5" Fill="#FFA44F14" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="1" />
+                        <Rectangle x:Name="eStopStation5" Fill="#FF35A414" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="2" />
+                    </Grid>
+                </RelativePanel>
+                <RelativePanel HorizontalAlignment="Stretch" Height="32" Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.415,0.485">
+                    <TextBox x:Name="teamNumberStation6" HorizontalAlignment="Left" Height="32" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="71" TextAlignment="Center"  />
+                    <CheckBox x:Name="bypassStation6" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" RelativePanel.RightOf="teamNumberStation6" Padding="0" MinWidth="0" Margin="10,0,10,0" IsChecked="True"/>
+                    <TextBlock x:Name="battStation6" HorizontalAlignment="Center" Height="20" TextWrapping="Wrap" Text="12" VerticalAlignment="Center" Width="70" RelativePanel.AlignRightWithPanel="True" Margin="10,6,10,6" TextAlignment="Center"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="32" RelativePanel.LeftOf="battStation6" RelativePanel.RightOf="bypassStation6"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="DsConnStation6" Fill="#FF1414A4" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="0" />
+                        <Rectangle x:Name="RioConnStation6" Fill="#FFA44F14" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="1" />
+                        <Rectangle x:Name="eStopStation6" Fill="#FF35A414" HorizontalAlignment="Stretch" Stroke="Black" VerticalAlignment="Stretch" Grid.Column="2" />
+                    </Grid>
+                </RelativePanel>
+                <RelativePanel HorizontalAlignment="Stretch" Height="42" Margin="10" VerticalAlignment="Top">
+                    <TextBlock x:Name="matchNumberTextBlock" Text="Match Number" TextWrapping="Wrap" Width="65" TextAlignment="Center"></TextBlock>
+                    <TextBox x:Name="matchNumberTextBox" TextWrapping="Wrap" Text="1" Width="100" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="matchNumberTextBlock"  Margin="5" InputScope="Number"/>
+                    <Button x:Name="InitMatchButton" Content="Initialize Match" HorizontalAlignment="Stretch" RelativePanel.AlignRightWithPanel="true" RelativePanel.RightOf="matchNumberTextBox" Margin="5"></Button>
+                </RelativePanel>
+            </StackPanel>
+            
+
+        </RelativePanel>
+    </ScrollViewer>
+</Page>
