@@ -46,7 +46,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FRC.NetworkTables, Version=2017.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FRC.NetworkTables.2017.0.1-beta-0007\lib\net451\FRC.NetworkTables.dll</HintPath>
+      <HintPath>..\packages\FRC.NetworkTables.2017.0.1-beta-0028\lib\netstandard1.3\FRC.NetworkTables.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />

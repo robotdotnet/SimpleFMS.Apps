@@ -3,7 +3,9 @@ using System.Threading;
 using Android.Views;
 using Android.Widget;
 using Autofac;
+using NetworkTables.Independent;
 using SimpleFMS.Base.Enums;
+using SimpleFMS.Base.Extensions;
 using SimpleFMS.Base.MatchTiming;
 using SimpleFMS.Networking.Client.NetworkClients;
 using static SimpleFMS.Base.MatchTiming.MatchTimingConstants;
@@ -164,9 +166,12 @@ namespace SimpleFMS.Apps.Android
                 MatchTimeReport times = new MatchTimeReport(teleopTimeSpan, delayTimeSpan, autoTimeSpan);
 
                 await client.SetMatchPeriodTimes(times, m_tokenSource.Token);
-                await client.StartMatch(m_tokenSource.Token);
+                bool started = await client.StartMatch(m_tokenSource.Token);
 
-                SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                if (started)
+                    SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                else
+                    MatchFailedToStart();
             }
         }
 
@@ -249,6 +254,25 @@ namespace SimpleFMS.Apps.Android
             });
         }
 
+        private void MatchFailedToStart()
+        {
+            using (var scope = m_retainedState.AutoFacContainer.BeginLifetimeScope())
+            {
+                var dsManager = scope.Resolve<DriverStationClient>();
+
+                if (dsManager.IsReadyToStartMatch())
+                {
+                    // Match failed to start because of an unknown reason
+                    Toast.MakeText(m_parentActivity.ApplicationContext, "Failed to start.", ToastLength.Short).Show();
+                }
+                else
+                {
+                    // Match failed to start because not ready to start
+                    Toast.MakeText(m_parentActivity.ApplicationContext, "Failed to start, robots not all connected?", ToastLength.Short).Show();
+                }
+            }
+        }
+
         private async void OnAutonomousStartClick(object sender, EventArgs e)
         {
             using (var scope = m_retainedState.AutoFacContainer.BeginLifetimeScope())
@@ -288,9 +312,12 @@ namespace SimpleFMS.Apps.Android
                 MatchTimeReport times = new MatchTimeReport(teleopTimeSpan, delayTimeSpan, autoTimeSpan);
 
                 await client.SetMatchPeriodTimes(times, m_tokenSource.Token);
-                await client.StartAutonomous(m_tokenSource.Token);
+                bool started = await client.StartAutonomous(m_tokenSource.Token);
 
-                SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                if (started)
+                    SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                else
+                    MatchFailedToStart();
             }
         }
 
@@ -333,9 +360,12 @@ namespace SimpleFMS.Apps.Android
                 MatchTimeReport times = new MatchTimeReport(teleopTimeSpan, delayTimeSpan, autoTimeSpan);
 
                 await client.SetMatchPeriodTimes(times, m_tokenSource.Token);
-                await client.StartTeleoperated(m_tokenSource.Token);
+                bool started = await client.StartTeleoperated(m_tokenSource.Token);
 
-                SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                if (started)
+                    SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                else
+                    MatchFailedToStart();
             }
         }
 

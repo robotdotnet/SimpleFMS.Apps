@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Autofac;
@@ -123,6 +124,37 @@ namespace SimpleFMS.Apps.UWP
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
+        private void MatchFailedToStart()
+        {
+            using (var scope = RetainedDeviceState.Instance.AutoFacContainer.BeginLifetimeScope())
+            {
+                var dsManager = scope.Resolve<DriverStationClient>();
+
+                if (dsManager.IsReadyToStartMatch())
+                {
+                    // Match failed to start because of an unknown reason
+                    var toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+
+                    var toastTextElements = toastXml.GetElementsByTagName("text");
+                    toastTextElements[0].AppendChild(toastXml.CreateTextNode("Failed to start."));
+
+                    var toast = new ToastNotification(toastXml);
+                    ToastNotificationManager.CreateToastNotifier().Show(toast);
+                }
+                else
+                {
+                    // Match failed to start because not ready to start
+                    var toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+
+                    var toastTextElements = toastXml.GetElementsByTagName("text");
+                    toastTextElements[0].AppendChild(toastXml.CreateTextNode("Failed to start, robots not all connected?"));
+
+                    var toast = new ToastNotification(toastXml);
+                    ToastNotificationManager.CreateToastNotifier().Show(toast);
+                }
+            }
+        }
+
         private async void OnMatchStartClick(object sender, RoutedEventArgs e)
         {
             using (var scope = RetainedDeviceState.Instance.AutoFacContainer.BeginLifetimeScope())
@@ -162,9 +194,12 @@ namespace SimpleFMS.Apps.UWP
                 MatchTimeReport times = new MatchTimeReport(teleopTimeSpan, delayTimeSpan, autoTimeSpan);
 
                 await client.SetMatchPeriodTimes(times, m_tokenSource.Token);
-                await client.StartMatch(m_tokenSource.Token);
+                bool started = await client.StartMatch(m_tokenSource.Token);
 
-                SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                if (started)
+                    SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                else
+                    MatchFailedToStart();
             }
         }
 
@@ -292,9 +327,12 @@ namespace SimpleFMS.Apps.UWP
                 MatchTimeReport times = new MatchTimeReport(teleopTimeSpan, delayTimeSpan, autoTimeSpan);
 
                 await client.SetMatchPeriodTimes(times, m_tokenSource.Token);
-                await client.StartAutonomous(m_tokenSource.Token);
+                bool started = await client.StartAutonomous(m_tokenSource.Token);
 
-                SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                if (started)
+                    SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                else
+                    MatchFailedToStart();
             }
         }
 
@@ -337,9 +375,12 @@ namespace SimpleFMS.Apps.UWP
                 MatchTimeReport times = new MatchTimeReport(teleopTimeSpan, delayTimeSpan, autoTimeSpan);
 
                 await client.SetMatchPeriodTimes(times, m_tokenSource.Token);
-                await client.StartTeleoperated(m_tokenSource.Token);
+                bool started = await client.StartTeleoperated(m_tokenSource.Token);
 
-                SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                if (started)
+                    SetMatchRunningLayout(client.GetMatchStateReport().MatchState);
+                else
+                    MatchFailedToStart();
             }
         }
 
